@@ -1,0 +1,65 @@
+{
+  "name": "pnpack",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Creates a ZIP archive of a package and all its dependencies, optimized for serverless deployments and containerization.",
+  "keywords": [
+    "pnpm",
+    "pack",
+    "zip"
+  ],
+  "homepage": "https://github.com/Falven/pnpack/tree/main",
+  "bugs": {
+    "url": "https://github.com/Falven/pnpack/issues"
+  },
+  "license": "MIT",
+  "author": "Falven",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist/cjs/**/*",
+    "dist/esm/**/*",
+    "dist/types/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build:esm": "esbuild src/pnpack.mts --bundle --minify --target=node18 --platform=node --format=esm --outfile=dist/esm/index.mjs",
+    "build:cjs": "esbuild src/pnpack.mts --bundle --minify --target=node18 --platform=node --format=cjs --outfile=dist/cjs/index.js",
+    "build:tsc": "tsc --emitDeclarationOnly",
+    "build": "concurrently --names \"ESM,CJS,TSC\" -c \"yellow.bold,white.bold,blue.bold\" \"pnpm:build:esm\" \"pnpm:build:cjs\" \"pnpm:build:tsc\"",
+    "watch": "esbuild src/pnpack.mts --bundle --target=node18 --platform=node --format=esm --outfile=dist/esm/index.mjs --watch"
+  },
+  "dependencies": {
+    "archiver": "^6.0.1",
+    "cross-spawn": "^7.0.3",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/archiver": "^5.3.2",
+    "@types/cross-spawn": "^6.0.3",
+    "@types/node": "^18.17.15",
+    "@types/yargs": "^17.0.24",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "concurrently": "^8.2.1",
+    "esbuild": "^0.19.2",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsdoc": "^43.2.0",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Falven/mssql-data-source.git"
+  }
+}
