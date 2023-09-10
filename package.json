@@ -25,14 +25,13 @@
     "LICENSE"
   ],
   "scripts": {
-    "build:esm": "esbuild src/pnpack.mts --bundle --minify --target=node18 --platform=node --format=esm --outfile=dist/esm/index.mjs",
-    "build:cjs": "esbuild src/pnpack.mts --bundle --minify --target=node18 --platform=node --format=cjs --outfile=dist/cjs/index.js",
+    "build:esm": "esbuild src/pnpack.mts --bundle --minify --target=node18 --platform=node --format=esm --outfile=dist/esm/pnpack.mjs",
+    "build:cjs": "esbuild src/pnpack.mts --bundle --minify --target=node18 --platform=node --format=cjs --outfile=dist/cjs/pnpack.js",
     "build:tsc": "tsc --emitDeclarationOnly",
     "build": "concurrently --names \"ESM,CJS,TSC\" -c \"yellow.bold,white.bold,blue.bold\" \"pnpm:build:esm\" \"pnpm:build:cjs\" \"pnpm:build:tsc\"",
-    "watch": "esbuild src/pnpack.mts --bundle --target=node18 --platform=node --format=esm --outfile=dist/esm/index.mjs --watch"
+    "watch": "esbuild src/pnpack.mts --bundle --target=node18 --platform=node --format=esm --outfile=dist/esm/pnpack.mjs --watch"
   },
   "dependencies": {
-    "archiver": "^6.0.1",
     "cross-spawn": "^7.0.3",
     "yargs": "^17.7.2"
   },
